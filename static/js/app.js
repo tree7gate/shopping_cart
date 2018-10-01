@@ -40,7 +40,7 @@ function showProduct(response) {
 
 $.get('./assets/products.json', showProduct);
 
-// TODO: add functionality later
+
 function addToCart(id) {
   $.get('./assets/products.json', function(res){
     let products = res.products;
@@ -54,5 +54,34 @@ function addToCart(id) {
       }
     }
   });
+  // call showCart to update table
+  // Usage!
+  sleep(50).then(() => {
+      showCart();
+  })
+
+}
+
+function showCart() {
+  // define html variable to be inserted into tbody
+  let html='';
+
+  // loop through all products in cart
+  // TODO: change total to be quantity x price
+  for (let i = 0; i < cart.length; i++) {
+    html += `<tr>
+      <td>1</td>
+      <td>${cart[i].title}</td>
+      <td>$${cart[i].price}</td>
+      <td>$${cart[i].price}</td>
+    </tr>`;
+  }
   console.log(cart);
+  // inject html variable into table-body
+  $("#table-body").html(html);
+
+}
+
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
 }
