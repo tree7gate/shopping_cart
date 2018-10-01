@@ -58,7 +58,7 @@ function addToCart(id) {
   // Usage!
   sleep(50).then(() => {
       showCart();
-  })
+  });
 
 }
 
@@ -74,12 +74,30 @@ function showCart() {
       <td>${cart[i].title}</td>
       <td>$${cart[i].price}</td>
       <td>$${cart[i].price}</td>
+      <td><button onclick="removeFromCart(${cart[i].id})"class="btn btn-danger">x</button></td>
     </tr>`;
   }
   console.log(cart);
   // inject html variable into table-body
   $("#table-body").html(html);
 
+}
+
+// TODO: create remove functionality
+function removeFromCart(id) {
+  // loop through products in cart and remove one instance of id
+  for (let i = 0; i < cart.length; i++) {
+    // check current product for id passed in
+    if(cart[i].id == id) {
+      // splice current product
+      cart.splice(i, 1);
+      break;
+    }
+  }
+  // run showCart to generate current cart array
+  sleep(50).then(() => {
+      showCart();
+  });
 }
 
 function sleep (time) {
