@@ -1,0 +1,46 @@
+{
+  "products": [
+    {
+      "id": 0,
+      "title": "Soap",
+      "price": 4.86,
+      "description": "This is a bar of soap."
+    },
+    {
+      "id": 1,
+      "title": "Polo",
+      "price": 4.86,
+      "description": "This is Polo, enough said."
+    },
+    {
+      "id": 2,
+      "title": "Iphone XV Case",
+      "price": 34.55,
+      "description": "Waiting for the phone to come out."
+    },
+    {
+      "id": 3,
+      "title": "Banana",
+      "price": 4.86,
+      "description": "Taste like banana."
+    },
+    {
+      "id": 4,
+      "title": "Mineral Water",
+      "price": 4.86,
+      "description": "Life-saving water."
+    },
+    {
+      "id": 5,
+      "title": "Air-Conditioner",
+      "price": 114.89,
+      "description": "You need it for the summer."
+    },
+    {
+      "id": 6,
+      "title": "CD-Keys",
+      "price": 64.99,
+      "description": "This is a key for an unknown game."
+    }
+  ]
+}
