@@ -1,7 +1,7 @@
 // global cart variables
 // TODO: replace with cloud database
 let cart = [];
-
+let obj = {};
 // if cart is empty, don't show cart
 
 if (cart.length === 0) {
@@ -54,12 +54,25 @@ function addToCart(id) {
     // loop through products array to find correct id
     for (let i = 0; i < products.length; i++){
       // check current product id to id parameter passed
+      // add product into an object
       if (products[i].id == id) {
+        // console.log(obj);
+        if (obj[products[i].title]) {
+          obj[products[i].title] += 1;
+          // products[i].quantity += 1;
+
+        } else {
+          obj[products[i].title] = 1;
+          // products[i].quantity = 1;
+          cart.push(products[i]);
+          break;
+        }
         // add product to global cart
-        cart.push(products[i]);
-        break;
+
       }
     }
+
+    // console.log(obj);
   });
   // call showCart to update table
   // Usage!
@@ -71,6 +84,7 @@ function addToCart(id) {
 }
 
 function showCart() {
+
   // if cart is empty, don't show, otherwise show
   if (cart.length === 0) {
     $("#cart").css("display", "none");
@@ -82,17 +96,27 @@ function showCart() {
   let html='';
 
   // loop through all products in cart
-  // TODO: change total to be quantity x price
+
+  // console.log(cart);
   for (let i = 0; i < cart.length; i++) {
-    html += `<tr>
-      <td>1</td>
-      <td>${cart[i].title}</td>
-      <td>$${cart[i].price}</td>
-      <td>$${cart[i].price}</td>
-      <td><button onclick="removeFromCart(${cart[i].id})"class="btn btn-danger">x</button></td>
-    </tr>`;
+
+    // get individual product total
+    let itemTotal = (cart[i].price * obj[cart[i].title]).toFixed(2);
+
+    // populate the cart with items
+      html += `
+      <tr>
+        <td>${obj[cart[i].title]}</td>
+        <td>${cart[i].title}</td>
+        <td>$${cart[i].price}</td>
+        <td>$${itemTotal}</td>
+        <td><button onclick="removeFromCart(${cart[i].id})"class="btn btn-danger">x</button></td>
+      </tr>`;
+    // }
+
   }
-  console.log(cart);
+  // console.log(cart);
+  console.log(html);
   // inject html variable into table-body
   $("#table-body").html(html);
 
